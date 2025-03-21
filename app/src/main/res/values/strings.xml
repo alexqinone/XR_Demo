@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">XR_Demo</string>
+    <string name="hello_android_xr">Hello Android XR.</string>
+    <string name="really_long_xr_txt">this is really long text, this is really long text, this is really long text, this is really long text, this is really long text, this is really long text, this is really long text, this is really long text, this is really long text, this is really long text, this is really long text, this is really long text, this is really long text, this is really long text, this is really long text, this is really long text.</string>
+    <string name="switch_to_home_space_mode">Switch to Home Space Mode</string>
+    <string name="switch_to_full_space_mode">Switch to Full Space Mode</string>
+    <string name="set_virtual_environment">Show virtual environment</string>
+    <string name="set_passthrough">Set passthrough</string>
+    <string name="enable_passthrough">Enable passthrough</string>
+    <string name="disable_passthrough">Disable passthrough</string>
+    <string name="use_custom_environment">Custom virtual environment</string>
+    <string name="annibal">Annibal</string>
+    <string name="annibal_description">Commandé par la direction des Bâtiments du roi pour l allée royale du château de Versailles d après un petit modèle exécuté par le sculpteur François Girardon. Modèle par Slodtz payé le 13 juillet 1687. Exécution en marbre toujours en cours en août 1689, mais probablement interrompue jusqu\'en</string>
+</resources>
