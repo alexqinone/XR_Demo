@@ -31,6 +31,7 @@
             n/a
     -->
     <uses-permission android:name="android.permission.SCENE_UNDERSTANDING_FINE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -99,6 +100,14 @@
             android:theme="@style/Theme.XR_Demo">
         </activity>
         <activity android:name=".museum.MuseumPOCActivity"
+            android:exported="true"
+            android:theme="@style/Theme.XR_Demo">
+            <property
+                android:name="android.window.PROPERTY_XR_ACTIVITY_START_MODE"
+                android:value="XR_ACTIVITY_START_MODE_FULL_SPACE_MANAGED"/>
+        </activity>
+
+        <activity android:name=".museum.ModelLoadActivity"
             android:exported="true"
             android:theme="@style/Theme.XR_Demo">
             <property

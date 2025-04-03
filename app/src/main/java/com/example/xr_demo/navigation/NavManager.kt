@@ -10,6 +10,7 @@ import androidx.xr.scenecore.setFullSpaceMode
 import com.example.xr_demo.MainActivity
 import com.example.xr_demo.arcore.ARCoreMainActivity
 import com.example.xr_demo.gallery.GalleryActivity
+import com.example.xr_demo.museum.ModelLoadActivity
 import com.example.xr_demo.rendering.RenderingActivity
 import com.example.xr_demo.museum.MuseumPOCActivity
 
@@ -47,6 +48,13 @@ object NavManager {
             title = "Museum Demo",
             activityClass = MuseumPOCActivity::class.java,
             description = "Demo for showing interaction with 3d models",
+            isFullSpace = true
+        ),
+
+        ActivityInfo(
+            title = "Model Loading",
+            activityClass = ModelLoadActivity::class.java,
+            description = "Loading 3d models from the internet with url",
             isFullSpace = true
         ),
 

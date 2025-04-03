@@ -73,6 +73,7 @@ class MuseumPOCActivity : ComponentActivity() {
 
     companion object {
         const val ART_GLB_FILE_NAME = "models/museumSculpture.glb"
+//        const val ART_GLB_FILE_NAME = "https://github.com/alexqinone/glbStorage/raw/refs/heads/main/Houseplant.glb"
         const val PEDESTAL_FILE_NAME = "models/columnPedestal.glb"
     }
 
@@ -85,7 +86,7 @@ class MuseumPOCActivity : ComponentActivity() {
         R.drawable.hannibalthumb_4
     )
 
-    private var environmentController : EnvironmentController? = null
+    private var environmentController: EnvironmentController? = null
     private val environmentModelName = "models/museumAlley.glb"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -113,7 +114,7 @@ class MuseumPOCActivity : ComponentActivity() {
             LaunchedEffect(Unit) {
 
 //              //create art/sculpture model
-                val artGlbModel = GltfModel.create(xrSession,ART_GLB_FILE_NAME).await()
+                val artGlbModel = GltfModel.create(xrSession, ART_GLB_FILE_NAME).await()
                 val glbEntity = GltfModelEntity.create(xrSession, artGlbModel)
 
                 val modelTranslation = Vector3(0f, 0f, 0f)
@@ -125,7 +126,7 @@ class MuseumPOCActivity : ComponentActivity() {
                 glbEntity.setScale(3.0f)
 
                 //create pedestal model
-                val pedGlbModel = GltfModel.create(xrSession,PEDESTAL_FILE_NAME).await()
+                val pedGlbModel = GltfModel.create(xrSession, PEDESTAL_FILE_NAME).await()
                 val pedEntity = GltfModelEntity.create(xrSession, pedGlbModel)
 
                 val pedTranslation = Vector3(0f, -0.42f, 0f)
@@ -136,13 +137,15 @@ class MuseumPOCActivity : ComponentActivity() {
                 pedEntity.setScale(0.22f)
 
                 val modelInteractable = InteractableComponent.create(xrSession, executor) { event ->
-                    when(event.action) {
+                    when (event.action) {
                         InputEvent.ACTION_DOWN -> {
 
                         }
+
                         InputEvent.ACTION_UP -> {
 
                         }
+
                         InputEvent.ACTION_MOVE -> {
                             val modelTranslation = Vector3(0f, 0f, 0f)
                             modelAngel = modelAngel + 5f
@@ -167,7 +170,7 @@ class MuseumPOCActivity : ComponentActivity() {
                     .height(400.dp)
                     .width(500.dp)
                     .offset(x = 400.dp, y = 100.dp)
-            ){
+            ) {
                 ShowInfoPanel()
             }
 
@@ -222,14 +225,20 @@ class MuseumPOCActivity : ComponentActivity() {
                 .clip(RoundedCornerShape(10)),
         ) {
             Column(
-                modifier = Modifier.fillMaxSize().padding(20.dp),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.dp),
                 horizontalAlignment = Alignment.Start,
             )
             {
                 Text(text = stringResource(R.string.annibal), fontSize = 20.sp)
-                Spacer(Modifier. weight(0.2f))
-                Text(text = stringResource(R.string.annibal_description), fontSize = 16.sp, color = Color.Gray)
-                Spacer(Modifier. weight(0.2f))
+                Spacer(Modifier.weight(0.2f))
+                Text(
+                    text = stringResource(R.string.annibal_description),
+                    fontSize = 16.sp,
+                    color = Color.Gray
+                )
+                Spacer(Modifier.weight(0.2f))
             }
         }
     }
@@ -244,7 +253,7 @@ class MuseumPOCActivity : ComponentActivity() {
                 .fillMaxSize(),
             color = Color.Transparent
         ) {
-            LazyColumn (
+            LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
                     .widthIn(0.dp, 0.dp)
@@ -252,10 +261,10 @@ class MuseumPOCActivity : ComponentActivity() {
                     .focusGroup(),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                    items(thumbnailImages.size) {
-                        val imageUrl = thumbnailImages[it]
-                            ThumbNailCard(imageUrl, focusRequesters[it], focusedIndex)
-                    }
+                items(thumbnailImages.size) {
+                    val imageUrl = thumbnailImages[it]
+                    ThumbNailCard(imageUrl, focusRequesters[it], focusedIndex)
+                }
             }
         }
     }
@@ -267,7 +276,8 @@ class MuseumPOCActivity : ComponentActivity() {
         focusedIndex: MutableState<Int>
     ) {
 
-        val borderColor = if (focusedIndex.value == thumbnailImages.indexOf(imageUrlId)) Color.White else Color.Transparent
+        val borderColor =
+            if (focusedIndex.value == thumbnailImages.indexOf(imageUrlId)) Color.White else Color.Transparent
 
         Card(
             modifier = Modifier
