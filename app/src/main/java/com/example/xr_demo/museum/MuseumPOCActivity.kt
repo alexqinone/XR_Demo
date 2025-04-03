@@ -73,8 +73,7 @@ class MuseumPOCActivity : ComponentActivity() {
 
     companion object {
         const val ART_GLB_FILE_NAME = "models/museumSculpture.glb"
-//        const val ART_GLB_FILE_NAME = "https://github.com/alexqinone/glbStorage/raw/refs/heads/main/Houseplant.glb"
-        const val PEDESTAL_FILE_NAME = "models/columnPedestal.glb"
+        const val PEDESTAL_FILE_NAME = "models/pedestal_new.glb"
     }
 
     private var modelAngel: Float = 225f
@@ -87,7 +86,7 @@ class MuseumPOCActivity : ComponentActivity() {
     )
 
     private var environmentController: EnvironmentController? = null
-    private val environmentModelName = "models/museumAlley.glb"
+    private val environmentModelName = "models/museum_room_empty.glb"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -129,12 +128,12 @@ class MuseumPOCActivity : ComponentActivity() {
                 val pedGlbModel = GltfModel.create(xrSession, PEDESTAL_FILE_NAME).await()
                 val pedEntity = GltfModelEntity.create(xrSession, pedGlbModel)
 
-                val pedTranslation = Vector3(0f, -0.42f, 0f)
+                val pedTranslation = Vector3(0f, -0.22f, 0f)
                 val pedOrientation = Quaternion.fromEulerAngles(0f, 0f, 0f)
                 val pedPose = Pose(pedTranslation, pedOrientation)
 
                 pedEntity.setPose(pedPose)
-                pedEntity.setScale(0.22f)
+                pedEntity.setScale(0.42f)
 
                 val modelInteractable = InteractableComponent.create(xrSession, executor) { event ->
                     when (event.action) {
