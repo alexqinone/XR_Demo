@@ -68,6 +68,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.lifecycleScope
 import coil.compose.AsyncImage
 import com.example.xr_demo.EnvironmentController
+import com.example.xr_demo.util.EntityYAxisRotationHandler
 
 class MuseumPOCActivity : ComponentActivity() {
 
@@ -135,33 +136,18 @@ class MuseumPOCActivity : ComponentActivity() {
                 pedEntity.setPose(pedPose)
                 pedEntity.setScale(0.42f)
 
-                val modelInteractable = InteractableComponent.create(xrSession, executor) { event ->
-                    when (event.action) {
-                        InputEvent.ACTION_DOWN -> {
-
-                        }
-
-                        InputEvent.ACTION_UP -> {
-
-                        }
-
-                        InputEvent.ACTION_MOVE -> {
-                            val modelTranslation = Vector3(0f, 0f, 0f)
-                            modelAngel = modelAngel + 5f
-                            val modelOrientation = Quaternion.fromEulerAngles(0f, modelAngel, 0f)
-                            val modelPose = Pose(modelTranslation, modelOrientation)
-                            glbEntity.setPose(modelPose)
-
-                            //update thumbnails focus
-                            focusIndex.value = ((modelAngel % 360) / 90).toInt()
-                            focusRequesters[focusIndex.value].requestFocus()
-                        }
-                    }
-                }
+                val modelInteractable = InteractableComponent.create(xrSession, executor,
+                    EntityYAxisRotationHandler(glbEntity, linearToAngularMovementScalar = 135.0f) {
+                        entity, yRotation ->
+                        //update thumbnails focus
+                        var y = yRotation % 360.0f
+                        if (y < 0.0f) { y += 360.0f }
+                        focusIndex.value = (y / 90).toInt()
+                        focusRequesters[focusIndex.value].requestFocus()
+                    })
 
                 glbEntity.addComponent(modelInteractable)
                 glbEntity.setParent(modelRoot)
-
             }
 
             SpatialPanel(
