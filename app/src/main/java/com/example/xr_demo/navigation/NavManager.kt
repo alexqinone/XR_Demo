@@ -10,6 +10,7 @@ import androidx.xr.scenecore.setFullSpaceMode
 import com.example.xr_demo.MainActivity
 import com.example.xr_demo.arcore.ARCoreMainActivity
 import com.example.xr_demo.gallery.GalleryActivity
+import com.example.xr_demo.museum.DisposeTestActivity
 import com.example.xr_demo.museum.ModelLoadActivity
 import com.example.xr_demo.rendering.RenderingActivity
 import com.example.xr_demo.museum.MuseumPOCActivity
@@ -55,6 +56,13 @@ object NavManager {
             title = "Model Loading",
             activityClass = ModelLoadActivity::class.java,
             description = "Loading 3d models from the internet with url",
+            isFullSpace = true
+        ),
+
+        ActivityInfo(
+            title = "Dispose Entity Test",
+            activityClass = DisposeTestActivity::class.java,
+            description = "Load a model and dispose it and try to reload",
             isFullSpace = true
         ),
 

@@ -137,7 +137,7 @@ class MuseumPOCActivity : ComponentActivity() {
                 pedEntity.setScale(0.42f)
 
                 val modelInteractable = InteractableComponent.create(xrSession, executor,
-                    EntityYAxisRotationHandler(glbEntity, linearToAngularMovementScalar = 135.0f) {
+                    EntityYAxisRotationHandler(glbEntity, linearToAngularMovementScalar = 200.0f) {
                         entity, yRotation ->
                         //update thumbnails focus
                         var y = yRotation % 360.0f
